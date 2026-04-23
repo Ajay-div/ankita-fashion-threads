@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ANKITA. | Premium Ethnic Wear</title>
+  <title>ANKITA. | Premium Indian Ethnic Wear</title>
+  <meta name="description" content="Luxury boutique for handpicked sarees, lehengas, and custom Aari work. Experience elegance in every thread.">
   
+  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="50da20f8141c89d8" />
 
-  <!-- FONTS (UPGRADED) -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet">
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- ICONS -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
   <style>
-    /* RESET */
+    :root {
+      --primary: #111;
+      --accent: #b8860b; /* Golden accent */
+      --bg: #fff;
+      --gray: #f9f9f9;
+      --text-muted: #666;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -27,203 +34,315 @@
     }
 
     body {
-      background: #fff;
-      color: #111;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
     }
 
     /* NAVBAR */
     .navbar {
-      padding: 15px 40px;
+      padding: 20px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       border-bottom: 1px solid #eee;
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
 
     .cart-btn {
       position: relative;
       cursor: pointer;
+      font-size: 24px;
+      transition: 0.3s;
     }
+
+    .cart-btn:hover { color: var(--accent); }
 
     .cart-count {
       position: absolute;
       top: -5px;
       right: -10px;
-      background: black;
+      background: var(--primary);
       color: white;
-      font-size: 12px;
+      font-size: 10px;
       padding: 2px 6px;
       border-radius: 50%;
+      font-weight: 600;
     }
 
     /* HERO */
     .hero {
-      padding: 100px 40px;
+      padding: 120px 5% 80px;
       text-align: center;
+      background: var(--gray);
     }
 
     .hero h1 {
-      font-family: 'Playfair Display';
-      font-size: 42px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      margin-bottom: 15px;
     }
 
     .hero p {
-      margin-top: 10px;
-      color: #555;
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* PRODUCTS */
     .products {
-      padding: 60px 40px;
+      padding: 80px 5%;
     }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
     }
 
     .product-card {
-      border: 1px solid #eee;
-      padding: 15px;
-      transition: 0.3s;
+      background: #fff;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+    }
+
+    .product-img-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #f0f0f0;
     }
 
     .product-img {
       width: 100%;
-      height: 300px;
+      height: 100%;
       object-fit: cover;
-      transition: 0.4s;
+      transition: 0.6s;
     }
 
     .product-card:hover .product-img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .product-card h3 {
-      margin-top: 10px;
-      font-size: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 5px;
     }
 
-    .product-card p {
-      margin: 5px 0;
+    .product-card .price {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 15px;
     }
 
-    .product-card button {
-      padding: 8px 12px;
-      background: black;
+    .add-to-cart {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
       color: white;
       border: none;
       cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 13px;
     }
 
-    /* CART */
-    .cart {
+    .add-to-cart:hover {
+      background: #333;
+    }
+
+    /* CART SIDEBAR */
+    .cart-sidebar {
       position: fixed;
-      right: 0;
+      right: -350px;
       top: 0;
-      width: 300px;
+      width: 350px;
       height: 100%;
       background: #fff;
-      border-left: 1px solid #eee;
-      padding: 20px;
-      display: none;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 30px;
+      transition: 0.4s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    .cart h3 {
-      margin-bottom: 20px;
+    .cart-sidebar.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-cart {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #cartItems {
+      flex: 1;
+      overflow-y: auto;
     }
 
     .cart-item {
-      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
-    .checkout {
-      margin-top: 20px;
+    .cart-footer {
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .checkout-btn {
       width: 100%;
-      padding: 10px;
-      background: black;
+      padding: 15px;
+      background: var(--primary);
       color: white;
       border: none;
+      cursor: pointer;
+      font-weight: 600;
     }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active { display: block; }
   </style>
 </head>
-
 <body>
 
+  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
   <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">ANKITA.</div>
-    <div class="cart-btn" onclick="toggleCart()">
-      <i class="ri-shopping-bag-line"></i>
-      <span class="cart-count">0</span>
+  <nav class="navbar">
+    <a href="#" class="logo">ANKITA.</a>
+    <div class="nav-actions">
+      <div class="cart-btn" onclick="toggleCart()">
+        <i class="ri-shopping-bag-line"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
     </div>
-  </div>
+  </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <header class="hero">
     <h1>Elegance in Every Thread</h1>
-    <p>Luxury ethnic wear for modern women</p>
-  </section>
+    <p>Discover our handpicked collection of luxury Indian ethnic wear, crafted for the modern woman.</p>
+  </header>
 
   <!-- PRODUCTS -->
   <section class="products">
-    <div class="product-grid" id="productGrid"></div>
+    <div class="product-grid" id="productGrid">
+      <!-- Products will be injected here -->
+    </div>
   </section>
 
-  <!-- CART -->
-  <div class="cart" id="cart">
-    <h3>Your Cart</h3>
-    <div id="cartItems"></div>
-    <h4 id="total">Total: ₹0</h4>
-    <button class="checkout" onclick="checkout()">Checkout</button>
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Shopping Bag</h3>
+      <i class="ri-close-line close-cart" onclick="toggleCart()"></i>
+    </div>
+    <div id="cartItems">
+      <!-- Cart items -->
+    </div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Grand Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">Secure Checkout</button>
+    </div>
   </div>
 
   <script>
-
     /* PRODUCTS DATA */
     const products = [
       {
         id: 1,
-        name: "Banarasi Saree",
+        name: "Banarasi Silk Saree",
         price: 4999,
-        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c"
+        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600"
       },
       {
         id: 2,
-        name: "Bridal Lehenga",
+        name: "Handcrafted Lehenga",
         price: 12999,
-        image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0"
+        image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&q=80&w=600"
       },
       {
         id: 3,
-        name: "Designer Kurti",
-        price: 1999,
-        image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2"
+        name: "Designer Aari Work Kurti",
+        price: 2499,
+        image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=600"
       }
     ];
 
     /* RENDER PRODUCTS */
-    const grid = document.getElementById("productGrid");
-
-    grid.innerHTML = products.map(p => `
-  <div class="product-card">
-    <img src="${p.image}" class="product-img">
-    <h3>${p.name}</h3>
-    <p>₹${p.price}</p>
-    <button onclick="addToCart(${p.id})">Add to Cart</button>
-  </div>
-`).join("");
+    const productGrid = document.getElementById("productGrid");
+    productGrid.innerHTML = products.map(p => `
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="${p.image}" class="product-img" alt="${p.name}">
+        </div>
+        <h3>${p.name}</h3>
+        <p class="price">₹${p.price.toLocaleString('en-IN')}</p>
+        <button class="add-to-cart" onclick="addToCart(${p.id})">Add to Bag</button>
+      </div>
+    `).join("");
 
     /* CART LOGIC */
     let cart = [];
@@ -231,38 +350,54 @@
     function addToCart(id) {
       const product = products.find(p => p.id === id);
       cart.push(product);
-      updateCart();
+      updateCartUI();
+      
+      // Optional: Open cart automatically when adding
+      if(!document.getElementById("cartSidebar").classList.contains("active")) {
+        toggleCart();
+      }
     }
 
-    function updateCart() {
-      document.querySelector(".cart-count").innerText = cart.length;
+    function updateCartUI() {
+      // Update count
+      document.getElementById("cartCount").innerText = cart.length;
 
-      const items = document.getElementById("cartItems");
+      // Update list
+      const cartItems = document.getElementById("cartItems");
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color:#888; text-align:center; margin-top:50px;">Your bag is empty.</p>';
+      } else {
+        cartItems.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong>
+              <div style="font-size:12px; color:#888;">Qty: 1</div>
+            </div>
+            <span>₹${item.price.toLocaleString('en-IN')}</span>
+          </div>
+        `).join("");
+      }
 
-      items.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      ${item.name} - ₹${item.price}
-    </div>
-  `).join("");
-
+      // Update total
       const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-      document.getElementById("total").innerText = "Total: ₹" + total;
+      document.getElementById("cartTotal").innerText = "₹" + total.toLocaleString('en-IN');
     }
 
     /* CART TOGGLE */
     function toggleCart() {
-      const cartBox = document.getElementById("cart");
-      cartBox.style.display = cartBox.style.display === "block" ? "none" : "block";
+      document.getElementById("cartSidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
     }
 
     /* CHECKOUT */
     function checkout() {
-      alert("Order placed successfully!");
+      if(cart.length === 0) return alert("Your bag is empty!");
+      alert("Proceeding to secure checkout...");
     }
-
+    
+    // Initialize UI
+    updateCartUI();
   </script>
 
 </body>
-
 </html>
