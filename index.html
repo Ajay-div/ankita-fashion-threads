@@ -2,375 +2,308 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ankita Fashion Threads | Premium Indian Ethnic Wear</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANKITA. | Premium Indian Ethnic Wear</title>
   <meta name="description"
-    content="Discover exquisite handpicked sarees, lehengas, and premium fabrics at Ankita Fashion Threads. Where tradition meets modern elegance." />
+    content="Luxury boutique for handpicked sarees, lehengas, and custom Aari work. Experience elegance in every thread.">
+  <meta name="google-site-verification" content="50da20f8141c89d8" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:wght@400;500&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-  <!-- Frameworks -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-  <!-- Custom Styles -->
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- PART 1: NAVIGATION -->
-  <nav id="navbar">
-    <a class="nav-brand" href="#home">Ankita <span>Fashion</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products">Collection</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-toggle" id="navToggle">
-      <span></span><span></span><span></span>
+  <!-- ─── NAVBAR ─────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">ANKITA.</a>
+
+      <div class="nav-search-wrapper">
+        <div class="nav-search">
+          <i class="ri-search-line search-icon"></i>
+          <input type="text" placeholder="Search collections...">
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-btn theme-toggle" id="themeToggle" title="Toggle Theme">
+          <i class="ri-moon-line"></i>
+        </button>
+        <button class="nav-btn mobile-search-trigger" title="Search">
+          <i class="ri-search-line"></i>
+        </button>
+        <button class="nav-btn" title="Account">
+          <i class="ri-user-line"></i>
+        </button>
+        <button class="nav-btn" title="Wishlist">
+          <i class="ri-heart-line"></i>
+        </button>
+        <button class="nav-btn" id="cartBtn" title="Cart">
+          <i class="ri-shopping-bag-line"></i>
+          <span class="cart-count">0</span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- PART 2: HERO SECTION -->
-  <section id="home">
-    <div class="hero-bg-pattern"></div>
-    <div class="hero-mandala"></div>
-    <div class="hero-content">
-      <p class="hero-tagline">✦ Elegance in every weave ✦</p>
-      <h1 class="hero-title">
-        <span class="highlight">Ankita</span> Fashion
-        <span class="threads">Threads</span>
-      </h1>
-      <div class="ornament"><span>✦ ✦ ✦</span></div>
-      <p class="hero-desc">Where tradition meets grace — handpicked sarees, exquisite lehengas &amp; premium fabrics
-        crafted for the modern Indian woman.</p>
-      <div class="hero-btns">
-        <a href="#products" class="btn btn-primary">Explore Collection</a>
-        <a href="#contact" class="btn btn-secondary">Contact Us</a>
-      </div>
-    </div>
-    <div class="hero-scroll">Scroll</div>
-  </section>
-
-  <!-- PART 3: PRODUCTS COLLECTION -->
-  <section id="products">
+  <!-- ─── HERO SECTION ───────────────────────────── -->
+  <header class="hero">
+    <img src="hero-banner.png" alt="Ankita Fashion Hero" class="hero-img">
+    <div class="hero-overlay"></div>
     <div class="container">
-      <div class="section-header" data-reveal>
-        <p class="section-label">✦ Our Collection ✦</p>
-        <h2 class="section-title">Curated with <em>Love</em></h2>
-        <div class="ornament"><span>✦</span></div>
+      <div class="hero-content">
+        <span class="hero-tagline">Style That Speaks You</span>
+        <h1 class="hero-title">Elegance In Every <span class="accent-text">Thread</span></h1>
+        <p class="hero-desc">Discover our handpicked collection of luxury Indian ethnic wear, crafted with passion for
+          the modern woman.</p>
+        <a href="#products" class="btn-shop">Shop Now</a>
       </div>
+    </div>
+  </header>
 
-      <div class="row g-4">
-        <!-- Product 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">New Arrival</div>
-              <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600"
-                alt="Banarasi Silk Saree">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Banarasi Silk Saree</h3>
-              <p class="product-type">Sarees</p>
-              <div class="product-footer">
-                <span class="product-price">₹3,499</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Banarasi Silk Saree"
-                  class="product-btn" target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">Bestseller</div>
-              <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=600"
-                alt="Bridal Lehenga Set">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Bridal Lehenga Set</h3>
-              <p class="product-type">Lehengas</p>
-              <div class="product-footer">
-                <span class="product-price">₹12,999</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Bridal Lehenga Set"
-                  class="product-btn" target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600"
-                alt="Pure Cotton Fabric">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Pure Cotton Fabric</h3>
-              <p class="product-type">Fabrics</p>
-              <div class="product-footer">
-                <span class="product-price">₹450/m</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Cotton Fabric" class="product-btn"
-                  target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">Trending</div>
-              <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=80&w=600"
-                alt="Kanjivaram Silk Saree">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Kanjivaram Silk Saree</h3>
-              <p class="product-type">Sarees</p>
-              <div class="product-footer">
-                <span class="product-price">₹6,999</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Kanjivaram Saree" class="product-btn"
-                  target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&q=80&w=600"
-                alt="Designer Party Lehenga">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Designer Party Lehenga</h3>
-              <p class="product-type">Lehengas</p>
-              <div class="product-footer">
-                <span class="product-price">₹7,499</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Designer Lehenga" class="product-btn"
-                  target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">Premium</div>
-              <img src="https://images.unsplash.com/photo-1605462863863-10d9e47e15ee?auto=format&fit=crop&q=80&w=600"
-                alt="Zari Embroidery Thread">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Zari Embroidery Thread</h3>
-              <p class="product-type">Threads</p>
-              <div class="product-footer">
-                <span class="product-price">₹199/set</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Zari Thread set" class="product-btn"
-                  target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- ─── TRUST INDICATORS ────────────────────────── -->
+  <section class="trust-strip">
+    <div class="container trust-container">
+      <div class="trust-item">
+        <i class="ri-truck-line"></i>
+        <span>Free Global Shipping</span>
       </div>
-
-      <!-- Aari Work Blouse Subsection -->
-      <div class="section-header mt-5 pt-5" data-reveal>
-        <p class="section-label">✦ Specialized Craft ✦</p>
-        <h2 class="section-title">Aari Work <em>Blouses</em></h2>
-        <div class="ornament"><span>✦</span></div>
+      <div class="trust-item">
+        <i class="ri-exchange-funds-line"></i>
+        <span>Easy 7-Day Returns</span>
       </div>
-
-      <div class="row g-4">
-        <!-- Aari Product 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">Handcrafted</div>
-              <img src="aari-blouse-1.jpg" alt="Bridal Aari Work Blouse">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Bridal Aari Work Blouse</h3>
-              <p class="product-type">Aari Work</p>
-              <div class="product-footer">
-                <span class="product-price">₹2,499</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Bridal Aari Work Blouse"
-                  class="product-btn" target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aari Product 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1621012430307-b088bb92dc0e?auto=format&fit=crop&q=80&w=600"
-                alt="Floral Zardosi Blouse">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Floral Zardosi Blouse</h3>
-              <p class="product-type">Aari Work</p>
-              <div class="product-footer">
-                <span class="product-price">₹1,899</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Floral Zardosi Blouse"
-                  class="product-btn" target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aari Product 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="product-card h-100" data-reveal>
-            <div class="product-img">
-              <div class="product-badge">Custom Fit</div>
-              <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=600"
-                alt="Heavy Maggam Work Blouse">
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">Heavy Maggam Work Blouse</h3>
-              <p class="product-type">Aari Work</p>
-              <div class="product-footer">
-                <span class="product-price">₹3,299</span>
-                <a href="https://wa.me/919112221414?text=Hi! I'm interested in the Heavy Maggam Work Blouse"
-                  class="product-btn" target="_blank">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="trust-item">
+        <i class="ri-shield-check-line"></i>
+        <span>Secure Payments</span>
+      </div>
+      <div class="trust-item">
+        <i class="ri-service-line"></i>
+        <span>24/7 Premium Support</span>
       </div>
     </div>
   </section>
 
-  <!-- PART 4: ABOUT SECTION -->
-  <section id="about">
+  <!-- ─── CATEGORIES SECTION ─────────────────────── -->
+  <section class="categories">
     <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <div class="about-visual" data-reveal>
-            <div class="about-frame">
-              <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=800"
-                alt="Our Story">
-            </div>
+      <div class="section-header">
+        <p class="section-subtitle">Curated Collections</p>
+        <h2 class="section-title">Shop By Category</h2>
+      </div>
+
+      <div class="category-grid">
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600"
+            alt="Women">
+          <div class="category-content">
+            <h3 class="category-name">Sarees</h3>
+            <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="about-content" data-reveal>
-            <p class="section-label">✦ Our Story ✦</p>
-            <h2 class="section-title text-start mb-4">Woven with <em>Passion</em></h2>
-            <div class="ornament justify-content-start ms-0"><span>✦</span></div>
-            <blockquote class="about-quote">
-              "Every thread tells a story. Every saree carries a soul."
-            </blockquote>
-            <p class="about-text">
-              Welcome to <strong>Ankita Fashion Threads</strong> — a boutique born from a deep love for Indian
-              craftsmanship and timeless elegance. We bring you handpicked sarees, lehengas, and premium fabrics that
-              celebrate the richness of Indian textile heritage.
-            </p>
-            <p class="about-text">
-              Whether you're dressing for a wedding, a festival, or simply cherishing everyday grace — we have a weave
-              just for you.
-            </p>
-            <div class="about-stats d-flex flex-wrap gap-4 mt-5">
-              <div>
-                <div class="stat-num">200+</div>
-                <div class="stat-label">Collections</div>
-              </div>
-              <div>
-                <div class="stat-num">500+</div>
-                <div class="stat-label">Happy Customers</div>
-              </div>
-              <div>
-                <div class="stat-num">5★</div>
-                <div class="stat-label">Rating</div>
-              </div>
-            </div>
+        <div class="category-card">
+          <img src="lehenga-cat.png" alt="Lehengas">
+          <div class="category-content">
+            <h3 class="category-name">Lehengas</h3>
+            <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="category-card">
+          <img src="fabrics-cat.png" alt="Fabrics">
+          <div class="category-content">
+            <h3 class="category-name">Fabrics</h3>
+            <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="category-card">
+          <img src="arri-work/aari-blouse-1.jpg" alt="Aari Work">
+          <div class="category-content">
+            <h3 class="category-name">Aari Work</h3>
+            <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PART 5: CONTACT SECTION -->
-  <section id="contact">
+  <!-- ─── PRODUCT SECTION ────────────────────────── -->
+  <section id="products" class="products">
     <div class="container">
-      <div class="section-header" data-reveal>
-        <p class="section-label">✦ Get In Touch ✦</p>
-        <h2 class="section-title">Let's <em>Connect</em></h2>
-        <div class="ornament" style="--gold: #C9952A;"><span style="color:#C9952A">✦</span></div>
+      <div class="section-header">
+        <p class="section-subtitle">New Arrivals</p>
+        <h2 class="section-title">Trending Pieces</h2>
       </div>
-      <div class="row g-5">
-        <div class="col-lg-7">
-          <div class="contact-info" data-reveal>
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <div>
-                <p class="contact-detail-label">Location</p>
-                <p class="contact-detail-val">Pune Hadapsar Bhekrainagar Papdewasti Sinhagad Colony No 01</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📞</div>
-              <div>
-                <p class="contact-detail-label">Phone / WhatsApp</p>
-                <p class="contact-detail-val">+91 91122 21414</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🕐</div>
-              <div>
-                <p class="contact-detail-label">Timings</p>
-                <p class="contact-detail-val">Mon – Sat: 10am to 8pm<br />Sunday: 11am to 6pm</p>
-              </div>
-            </div>
-            <a href="https://www.youtube.com/@ankita_fashion_threads" target="_blank" class="contact-item"
-              style="text-decoration: none; display: flex;">
-              <div class="contact-icon">▶</div>
-              <div>
-                <p class="contact-detail-label">YouTube</p>
-                <p class="contact-detail-val">@ankita_fashion_threads</p>
-              </div>
-            </a>
+
+      <div class="product-grid" id="productGrid">
+        <!-- Skeleton Loaders -->
+        <div class="product-card is-loading">
+          <div class="product-img-wrapper skeleton"></div>
+          <div class="product-info">
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-price"></div>
+            <div class="skeleton skeleton-btn"></div>
           </div>
         </div>
-        <div class="col-lg-5">
-          <div class="contact-actions d-flex flex-column gap-3" data-reveal>
-            <a href="https://wa.me/919112221414?text=Hi Ankita! I'd like to know more about your collection."
-              class="wa-btn" target="_blank">
-              Chat on WhatsApp
-            </a>
-            <a href="https://www.youtube.com/@ankita_fashion_threads" class="yt-btn" target="_blank">
-              Watch on YouTube
-            </a>
-            <p class="social-note">We reply within a few hours ✦</p>
+        <!-- (Repeated via JS) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST SIGNALS ───────────────────────────── -->
+  <section class="trust-signals">
+    <div class="container">
+      <div class="signals-grid">
+        <div class="signal-card">
+          <h3 class="signal-num">5000+</h3>
+          <p class="signal-text">Happy Customers</p>
+        </div>
+        <div class="signal-card">
+          <h3 class="signal-num">100%</h3>
+          <p class="signal-text">Authentic Silk</p>
+        </div>
+        <div class="signal-card">
+          <h3 class="signal-num">COD</h3>
+          <p class="signal-text">Available Pan India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ───────────────────────────── -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Client Love</h2>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="rating">
+            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+              class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          </div>
+          <p class="testimonial-text">"The quality of the Banarasi saree is unmatched. The fabric feels like royalty and
+            the delivery was prompt."</p>
+          <div class="testimonial-author">
+            <p class="author-name">Priya Malhotra</p>
+            <p class="author-status"><i class="ri-checkbox-circle-fill"></i> Verified Buyer</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="rating">
+            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+              class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          </div>
+          <p class="testimonial-text">"Got my bridal lehenga customized here. The attention to detail in the Aari work
+            was beyond my expectations."</p>
+          <div class="testimonial-author">
+            <p class="author-name">Sneha Reddy</p>
+            <p class="author-status"><i class="ri-checkbox-circle-fill"></i> Verified Buyer</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PART 6: FOOTER -->
-  <footer>
-    <p>© 2025 <span>Ankita Fashion Threads</span> &nbsp;✦&nbsp; Made with ❤️ in Pune</p>
+  <!-- ─── FOOTER ─────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">ANKITA.</a>
+          <p class="footer-about">Crafting timeless elegance through traditional Indian weaves and bespoke craftsmanship
+            since 2015.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Pune+Hadapsar+Bhekrainagar+Papdewasti+Sinhagad+Colony+No+01" target="_blank" class="footer-location" title="Open in Maps">
+            <i class="ri-map-pin-line"></i> Pune Hadapsar Bhekrainagar Papdewasti Sinhagad Colony No 01
+          </a>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-link"><i class="ri-facebook-box-line"></i></a>
+            <a href="#" class="social-link"><i class="ri-youtube-line"></i></a>
+            <a href="#" class="social-link"><i class="ri-pinterest-line"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Aari Work</a></li>
+            <li><a href="#">Custom Orders</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Service</h4>
+          <ul class="footer-links">
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Newsletter</h4>
+          <p class="footer-about" style="font-size:0.85rem;">Join the list for exclusive launch invites and styling
+            tips.</p>
+          <div class="footer-subscribe">
+            <input type="email" placeholder="Your Email">
+            <button><i class="ri-arrow-right-line"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ankita Fashion Threads. Crafted with <i class="ri-heart-fill accent-text"></i> in Pune.</p>
+        <div class="payment-icons">
+          <i class="ri-visa-line"></i>
+          <i class="ri-mastercard-line"></i>
+          <i class="ri-bank-card-line"></i>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ─── CART SIDEBAR ────────────────────────────── -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Bag (<span id="cartItemCount">0</span>)</h3>
+      <button class="close-cart" id="closeCart"><i class="ri-close-line"></i></button>
+    </div>
+    <div class="cart-items" id="cartItemsList">
+      <!-- Dynamic Content -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span class="accent-text">Free</span>
+        </div>
+        <div class="summary-row total">
+          <span>Grand Total</span>
+          <span id="cartGrandTotal">₹0</span>
+        </div>
+      </div>
+      <button class="btn-checkout">Secure Checkout <i class="ri-lock-2-line"></i></button>
+    </div>
+  </aside>
+
+  <!-- ─── SCROLL TO TOP ───────────────────────────── -->
+  <button class="scroll-top" id="scrollTop"><i class="ri-arrow-up-s-line"></i></button>
+
   <script src="script.js"></script>
 </body>
 
