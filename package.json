@@ -1,0 +1,16 @@
+{
+  "name": "ankita-fashion-threads",
+  "version": "1.0.0",
+  "description": "A premium, modern, and responsive boutique website for **Ankita Fashion Threads**, specializing in exquisite Indian ethnic wear including sarees, lehengas, custom Aari work, and premium fabrics.",
+  "main": "script.js",
+  "scripts": {
+    "dev": "live-server --ignore=node_modules --host=0.0.0.0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
