@@ -1,16 +1,17 @@
 # Ankita Fashion Threads ✦
 
-A premium, modern, and responsive boutique website for **Ankita Fashion Threads**, specializing in exquisite Indian ethnic wear including sarees, lehengas, and premium fabrics.
+A premium, modern, and responsive boutique website for **Ankita Fashion Threads**, specializing in exquisite Indian ethnic wear including sarees, lehengas, custom Aari work, and premium fabrics.
 
 ## ✨ Features
 
-- **Premium Design System**: A curated color palette of Rose Gold, Deep Ink, and Warm Cream for a luxury boutique feel.
-- **Modern Typography**: Uses elegant Google Fonts (*Playfair Display* and *Cormorant Garamond*).
-- **Bootstrap 5.3 Integrated**: Built on top of the world's most popular CSS framework for robust layout and responsiveness.
-- **Dynamic Scroll Animations**: Smooth reveal-on-scroll effects for an interactive user experience.
-- **WhatsApp Integration**: Direct "Enquire" buttons for each product, pre-filled with inquiry messages.
-- **Social Connectivity**: Integrated links to YouTube and WhatsApp for seamless customer interaction.
-- **Glassmorphism Effects**: Blurred navigation bar that adapts dynamically as you scroll.
+- **Premium Zara-Style Design**: A curated luxury palette with soft neutral tones, glassmorphism effects, and a highly minimalist aesthetic.
+- **Modern Typography**: Uses the sleek, professional **Poppins** font.
+- **Pure HTML/CSS/JS Engine**: Built entirely without heavy frameworks (No Bootstrap). Completely custom responsive grid and styling for a lightweight, fast experience.
+- **Advanced Cart System**: Fully functional slide-in shopping bag with quantity control, item removal, dynamic subtotal calculations, and `localStorage` persistence.
+- **Mobile-First Experience**: Optimized with touch-friendly targets and a specialized 2-column product grid for mobile devices.
+- **Trust Indicators**: Highlights "5000+ Happy Customers," "Secure Checkout," and features verified customer testimonials with star ratings.
+- **Remix Icons**: Employs a crisp, professional vector icon library for a polished look.
+- **Dark Mode**: Fully integrated dark theme with automatic preference saving.
 
 ## 🚀 Getting Started
 
@@ -23,21 +24,20 @@ A premium, modern, and responsive boutique website for **Ankita Fashion Threads*
    ```bash
    cd ankita-fashion-threads
    ```
-3. Open `index.html` in your favorite browser.
+3. Open `index.html` in your favorite browser (or use VS Code Live Server for the best experience).
 
 ## 🛠️ Tech Stack
 
-- **HTML5**: Semantic structure.
-- **CSS3**: Custom styling, animations, and premium tokens.
-- **Bootstrap 5.3**: Grid system and layout utilities.
-- **JavaScript (ES6+)**: Interactivity and scroll animations.
-- **Unsplash**: High-quality fashion imagery.
+- **HTML5**: Semantic, accessible structure.
+- **CSS3**: Custom variables, CSS Grid/Flexbox, and advanced animations (shimmer loading, hover lifts).
+- **Vanilla JavaScript (ES6+)**: Custom cart logic, dynamic product rendering, and theme toggling.
+- **Remix Icons**: Professional iconography.
 
 ## 📍 Contact Information
 
-- **Location**: Pune Hadapsar Bhekrainagar Papdewasti Sinhagad Colony No 01
+- **Location**: [Pune Hadapsar Bhekrainagar Papdewasti Sinhagad Colony No 01](https://www.google.com/maps/search/?api=1&query=Pune+Hadapsar+Bhekrainagar+Papdewasti+Sinhagad+Colony+No+01) (Click for GPS Map)
 - **Phone/WhatsApp**: +91 91122 21414
 - **YouTube**: [@ankita_fashion_threads](https://www.youtube.com/@ankita_fashion_threads)
 
 ---
-*Created with ❤️ for Ankita Fashion Threads*
+*Crafted with ❤️ for Ankita Fashion Threads in Pune.*
