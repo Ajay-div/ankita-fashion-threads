@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ankita Fashion Threads | Premium Ethnic Wear</title>
+  <title>ANKITA. | Premium Ethnic Wear</title>
   
-  <!-- Google Site Verification -->
   <meta name="google-site-verification" content="50da20f8141c89d8" />
 
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+  <!-- FONTS (UPGRADED) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <!-- ICONS -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -26,211 +27,104 @@
     }
 
     body {
-      background: #fdfdfd;
+      background: #fff;
       color: #111;
     }
 
     /* NAVBAR */
     .navbar {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      padding: 30px 5%;
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #111;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
     }
 
-    .nav-icons {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .nav-icon {
-      font-size: 20px;
-      cursor: pointer;
-      color: #111;
+    .cart-btn {
       position: relative;
+      cursor: pointer;
     }
 
     .cart-count {
       position: absolute;
-      top: -6px;
-      right: -8px;
+      top: -5px;
+      right: -10px;
       background: black;
       color: white;
-      font-size: 10px;
-      padding: 2px 5px;
+      font-size: 12px;
+      padding: 2px 6px;
       border-radius: 50%;
-      font-weight: 600;
     }
 
     /* HERO */
     .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 800px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      padding-left: 8%;
-    }
-
-    .hero-img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      z-index: -2;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      /* Gradient that makes the left side readable but keeps the right side visible */
-      background: linear-gradient(to right, rgba(220, 205, 185, 0.95) 0%, rgba(220, 205, 185, 0.8) 40%, transparent 100%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 550px;
-      margin-top: 50px;
-    }
-
-    .hero-bg-text {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 7vw, 75px);
-      line-height: 1.05;
-      color: #e5d7c3; /* Gold/Beige */
-      font-weight: 500;
-      margin-bottom: 30px;
-      letter-spacing: 0px;
-    }
-
-    .hero-tag {
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 4px;
-      font-size: 12px;
-      color: #dfb2bc; /* Light pinkish */
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .hero-sub {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      color: #fff;
-      margin-bottom: 40px;
-      line-height: 1.2;
-      letter-spacing: 1px;
+      padding: 100px 40px;
+      text-align: center;
     }
 
     .hero h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(40px, 6vw, 65px);
-      font-weight: 900;
-      line-height: 1.1;
-      color: #111;
-      letter-spacing: -2px;
+      font-family: 'Playfair Display';
+      font-size: 42px;
     }
 
-    .hero h1 span {
-      color: #b58296; /* Deep pink/mauve */
-    }
-
-    .hero-desc {
-      margin-top: 25px;
-      font-size: 16px;
+    .hero p {
+      margin-top: 10px;
       color: #555;
-      line-height: 1.7;
-      max-width: 400px;
-    }
-
-    .hero-btn {
-      margin-top: 40px;
-      padding: 18px 45px;
-      background: #111;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-
-    .hero-btn:hover {
-      background: #333;
     }
 
     /* PRODUCTS */
     .products {
-      padding: 80px 5%;
+      padding: 60px 40px;
     }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
     }
 
     .product-card {
-      border: none;
+      border: 1px solid #eee;
+      padding: 15px;
       transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
     }
 
     .product-img {
       width: 100%;
-      height: 400px;
+      height: 300px;
       object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
     }
 
     .product-card h3 {
-      margin-top: 15px;
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      margin-top: 10px;
+      font-size: 16px;
     }
 
     .product-card p {
-      margin: 5px 0 15px;
-      font-weight: 600;
+      margin: 5px 0;
     }
 
     .product-card button {
-      width: 100%;
-      padding: 12px;
-      background: #111;
+      padding: 8px 12px;
+      background: black;
       color: white;
       border: none;
       cursor: pointer;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
     }
 
     /* CART */
@@ -238,46 +132,29 @@
       position: fixed;
       right: 0;
       top: 0;
-      width: 350px;
+      width: 300px;
       height: 100%;
       background: #fff;
       border-left: 1px solid #eee;
-      padding: 30px;
+      padding: 20px;
       display: none;
-      z-index: 1000;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.05);
     }
 
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .cart h3 {
       margin-bottom: 20px;
     }
 
     .cart-item {
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
+      margin-bottom: 10px;
     }
 
     .checkout {
       margin-top: 20px;
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       background: black;
       color: white;
       border: none;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .close-cart {
-      cursor: pointer;
-      font-size: 20px;
     }
   </style>
 </head>
@@ -285,45 +162,18 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <div class="logo">ANKITA FASHION THREADS</div>
-      <i class="ri-moon-line" style="font-size: 18px; margin-left: 5px; cursor: pointer;"></i>
+  <div class="navbar">
+    <div class="logo">ANKITA.</div>
+    <div class="cart-btn" onclick="toggleCart()">
+      <i class="ri-shopping-bag-line"></i>
+      <span class="cart-count">0</span>
     </div>
-    
-    <div class="nav-icons">
-      <i class="ri-search-line nav-icon"></i>
-      <i class="ri-user-line nav-icon"></i>
-      <div class="nav-icon" onclick="toggleCart()">
-        <i class="ri-shopping-bag-line"></i>
-        <span class="cart-count">0</span>
-      </div>
-    </div>
-  </nav>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
-    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c" class="hero-img">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <div class="hero-bg-text">ANKITA<br>FASHION<br>THREADS</div>
-
-      <p class="hero-tag">STYLE THAT SPEAKS YOU</p>
-      <div class="hero-sub">ELEGANCE.<br>REDEFINED.</div>
-
-      <h1>
-        Elegance In<br>
-        Every <span>Thread</span>
-      </h1>
-
-      <p class="hero-desc">
-        Discover our handpicked collection of luxury Indian ethnic wear, crafted with passion for the modern woman.
-      </p>
-
-      <button class="hero-btn">SHOP NOW</button>
-    </div>
+    <h1>Elegance in Every Thread</h1>
+    <p>Luxury ethnic wear for modern women</p>
   </section>
 
   <!-- PRODUCTS -->
@@ -333,36 +183,49 @@
 
   <!-- CART -->
   <div class="cart" id="cart">
-    <div class="cart-header">
-      <h3>Your Cart</h3>
-      <i class="ri-close-line close-cart" onclick="toggleCart()"></i>
-    </div>
+    <h3>Your Cart</h3>
     <div id="cartItems"></div>
-    <h4 id="total" style="margin-top: 20px;">Total: ₹0</h4>
+    <h4 id="total">Total: ₹0</h4>
     <button class="checkout" onclick="checkout()">Checkout</button>
   </div>
 
   <script>
-    /* PRODUCTS */
+
+    /* PRODUCTS DATA */
     const products = [
-      { id: 1, name: "Banarasi Saree", price: 4999, image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c" },
-      { id: 2, name: "Bridal Lehenga", price: 12999, image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0" },
-      { id: 3, name: "Designer Kurti", price: 1999, image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2" }
+      {
+        id: 1,
+        name: "Banarasi Saree",
+        price: 4999,
+        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c"
+      },
+      {
+        id: 2,
+        name: "Bridal Lehenga",
+        price: 12999,
+        image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0"
+      },
+      {
+        id: 3,
+        name: "Designer Kurti",
+        price: 1999,
+        image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2"
+      }
     ];
 
-    /* RENDER */
+    /* RENDER PRODUCTS */
     const grid = document.getElementById("productGrid");
 
     grid.innerHTML = products.map(p => `
-      <div class="product-card">
-        <img src="${p.image}" class="product-img">
-        <h3>${p.name}</h3>
-        <p>₹${p.price.toLocaleString('en-IN')}</p>
-        <button onclick="addToCart(${p.id})">Add to Cart</button>
-      </div>
-    `).join("");
+  <div class="product-card">
+    <img src="${p.image}" class="product-img">
+    <h3>${p.name}</h3>
+    <p>₹${p.price}</p>
+    <button onclick="addToCart(${p.id})">Add to Cart</button>
+  </div>
+`).join("");
 
-    /* CART */
+    /* CART LOGIC */
     let cart = [];
 
     function addToCart(id) {
@@ -374,22 +237,32 @@
     function updateCart() {
       document.querySelector(".cart-count").innerText = cart.length;
 
-      document.getElementById("cartItems").innerHTML =
-        cart.map(i => `<div class="cart-item"><span>${i.name}</span> <span>₹${i.price.toLocaleString('en-IN')}</span></div>`).join("");
+      const items = document.getElementById("cartItems");
 
-      const total = cart.reduce((s, i) => s + i.price, 0);
-      document.getElementById("total").innerText = "Total: ₹" + total.toLocaleString('en-IN');
+      items.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      ${item.name} - ₹${item.price}
+    </div>
+  `).join("");
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      document.getElementById("total").innerText = "Total: ₹" + total;
     }
 
+    /* CART TOGGLE */
     function toggleCart() {
-      const c = document.getElementById("cart");
-      c.style.display = c.style.display === "block" ? "none" : "block";
+      const cartBox = document.getElementById("cart");
+      cartBox.style.display = cartBox.style.display === "block" ? "none" : "block";
     }
 
+    /* CHECKOUT */
     function checkout() {
       alert("Order placed successfully!");
     }
+
   </script>
 
 </body>
+
 </html>
