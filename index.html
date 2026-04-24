@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet">
 
   <!-- Remix Icons -->
@@ -26,7 +26,14 @@
   <!-- ─── NAVBAR ─────────────────────────────────── -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="#" class="logo">ANKITA.</a>
+      <button class="nav-btn mobile-menu-trigger" title="Menu">
+        <i class="ri-menu-line"></i>
+      </button>
+      <div class="nav-links">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#products" class="nav-link">Shop</a>
+        <a href="#" class="nav-link">Collections</a>
+      </div>
 
       <div class="nav-search-wrapper">
         <div class="nav-search">
@@ -39,14 +46,9 @@
         <button class="nav-btn theme-toggle" id="themeToggle" title="Toggle Theme">
           <i class="ri-moon-line"></i>
         </button>
-        <button class="nav-btn mobile-search-trigger" title="Search">
-          <i class="ri-search-line"></i>
-        </button>
-        <button class="nav-btn" title="Account">
+        <button class="nav-btn" id="userBtn" title="Account">
           <i class="ri-user-line"></i>
-        </button>
-        <button class="nav-btn" title="Wishlist">
-          <i class="ri-heart-line"></i>
+          <span id="userNameDisplay" style="font-size: 0.8rem; margin-left: 5px; font-weight: 600; display: none;"></span>
         </button>
         <button class="nav-btn" id="cartBtn" title="Cart">
           <i class="ri-shopping-bag-line"></i>
@@ -56,17 +58,41 @@
     </div>
   </nav>
 
+  <!-- ─── LOGIN MODAL ────────────────────────────── -->
+  <div class="modal-overlay" id="loginModalOverlay"></div>
+  <div class="login-modal" id="loginModal">
+    <button class="close-modal" id="closeLogin"><i class="ri-close-line"></i></button>
+    <div class="modal-content">
+      <h2 class="modal-title">Welcome Back</h2>
+      <p class="modal-subtitle">Login to your account to track orders and save your favorites.</p>
+      <div id="loginError" class="login-error" style="display:none; color:#e74c3c; background:rgba(231, 76, 60, 0.1); padding:10px; border-radius:4px; font-size:0.85rem; margin-bottom:15px; text-align:center;"></div>
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-login">Sign In</button>
+      </form>
+      <div class="modal-divider"><span>or</span></div>
+      <button class="btn-google"><i class="ri-google-fill"></i> Continue with Google</button>
+      <p class="modal-footer">Don't have an account? <a href="#">Create one</a></p>
+    </div>
+  </div>
+
   <!-- ─── HERO SECTION ───────────────────────────── -->
   <header class="hero">
     <img src="hero-banner.png" alt="Ankita Fashion Hero" class="hero-img">
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
-        <span class="hero-tagline">Style That Speaks You</span>
-        <h1 class="hero-title">Elegance In Every <span class="accent-text">Thread</span></h1>
-        <p class="hero-desc">Discover our handpicked collection of luxury Indian ethnic wear, crafted with passion for
-          the modern woman.</p>
-        <a href="#products" class="btn-shop">Shop Now</a>
+        <span class="hero-tagline">The Art of Indian Weaves</span>
+        <h1 class="hero-title">Timeless <span class="italic-serif">Elegance</span> <br> Defined.</h1>
+        <p class="hero-desc">Experience the luxury of handpicked sarees and bespoke Aari craftsmanship, tailored for the modern connoisseur.</p>
+        <a href="#products" class="btn-shop">Explore Collection</a>
       </div>
     </div>
   </header>
@@ -298,6 +324,54 @@
         </div>
       </div>
       <button class="btn-checkout">Secure Checkout <i class="ri-lock-2-line"></i></button>
+    </div>
+  </aside>
+
+  <!-- ─── MOBILE MENU ────────────────────────────── -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="menu-header">
+      <span class="logo-small">ANKITA.</span>
+      <button class="close-menu" id="closeMenu"><i class="ri-close-line"></i></button>
+    </div>
+    <nav class="menu-nav">
+      <a href="#" class="menu-link active">Home</a>
+      <a href="#products" class="menu-link">Shop Collection</a>
+      <a href="#" class="menu-link">Aari Work</a>
+      <a href="#" class="menu-link">Custom Orders</a>
+      <a href="#" class="menu-link">About Us</a>
+      <a href="#" class="menu-link">Contact</a>
+    </nav>
+    <div class="menu-footer">
+      <div class="menu-social">
+        <a href="#"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-whatsapp-line"></i></a>
+      </div>
+      <p>+91 91122 21414</p>
+    </div>
+  </aside>
+
+  <!-- ─── MOBILE MENU ────────────────────────────── -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="menu-header">
+      <span class="logo-small">ANKITA.</span>
+      <button class="close-menu" id="closeMenu"><i class="ri-close-line"></i></button>
+    </div>
+    <nav class="menu-nav">
+      <a href="#" class="menu-link active">Home</a>
+      <a href="#products" class="menu-link">Shop Collection</a>
+      <a href="#" class="menu-link">Aari Work</a>
+      <a href="#" class="menu-link">Custom Orders</a>
+      <a href="#" class="menu-link">About Us</a>
+      <a href="#" class="menu-link">Contact</a>
+    </nav>
+    <div class="menu-footer">
+      <div class="menu-social">
+        <a href="#"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-whatsapp-line"></i></a>
+      </div>
+      <p>+91 91122 21414</p>
     </div>
   </aside>
 
