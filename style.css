@@ -429,19 +429,31 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 40%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
   color: white;
   transition: var(--transition);
 }
 
 .category-card:hover .category-content {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent 70%);
 }
 
 .category-name {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  transition: transform 0.4s ease;
+}
+
+.category-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease 0.1s;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .category-link {
@@ -453,10 +465,15 @@ section {
   align-items: center;
   gap: 8px;
   opacity: 0;
-  transform: translateY(10px);
-  transition: var(--transition);
+  transform: translateY(20px);
+  transition: all 0.5s ease 0.2s;
 }
 
+.category-card:hover .category-name {
+  transform: translateY(-5px);
+}
+
+.category-card:hover .category-desc,
 .category-card:hover .category-link {
   opacity: 1;
   transform: translateY(0);
@@ -526,7 +543,7 @@ section {
   top: 20px;
   left: 20px;
   background: var(--ink);
-  color: white;
+  color: var(--bg-primary);
   padding: 6px 14px;
   font-size: 0.7rem;
   font-weight: 700;
@@ -1191,8 +1208,41 @@ section {
     font-size: 1.8rem;
   }
 
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-header {
+    margin-bottom: 30px;
+  }
+
   .hero-content {
     padding: 20px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .category-card {
+    height: 220px;
+    border-radius: var(--radius-md);
+  }
+
+  .category-name {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .category-content {
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+  }
+
+  .category-link {
+    font-size: 0.7rem;
+    gap: 4px;
   }
 }
 

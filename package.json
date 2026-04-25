@@ -4,8 +4,8 @@
   "description": "A premium, modern, and responsive boutique website for **Ankita Fashion Threads**, specializing in exquisite Indian ethnic wear including sarees, lehengas, custom Aari work, and premium fabrics.",
   "main": "script.js",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "live-server --ignore=node_modules --host=0.0.0.0 --port=8080",
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "sqlite3": "^5.1.7"
   }
 }

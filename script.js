@@ -1,88 +1,26 @@
-// REAL PRODUCT DATA
-const products = [
-  {
-    id: 1,
-    name: "Banarasi Silk Saree",
-    price: 3499,
-    oldPrice: 4999,
-    badge: "New",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600"
-  },
-  {
-    id: 2,
-    name: "Bridal Lehenga Set",
-    price: 12999,
-    oldPrice: 15999,
-    badge: "Bestseller",
-    image: "lehenga-cat.png"
-  },
-  {
-    id: 3,
-    name: "Pure Cotton Fabric",
-    price: 450,
-    oldPrice: 600,
-    badge: "Sale",
-    image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600"
-  },
-  {
-    id: 4,
-    name: "Bridal Aari Work Blouse",
-    price: 2499,
-    oldPrice: 3200,
-    badge: "Handcrafted",
-    image: "arri-work/aari-blouse-1.jpg"
-  },
-  {
-    id: 5,
-    name: "Kanjivaram Silk Saree",
-    price: 6999,
-    oldPrice: 8500,
-    badge: "Trending",
-    image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=80&w=600"
-  },
-  {
-    id: 6,
-    name: "Designer Aari Work Blouse",
-    price: 2199,
-    oldPrice: 2800,
-    badge: "Elegant",
-    image: "arri-work/aari-blouse-1.png.jpg"
-  },
-  {
-    id: 7,
-    name: "Chanderi Silk Kurta Set",
-    price: 4299,
-    oldPrice: 5500,
-    badge: "Premium",
-    image: "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee?auto=format&fit=crop&q=80&w=600"
-  },
-  {
-    id: 8,
-    name: "Organza Floral Saree",
-    price: 2899,
-    oldPrice: 3800,
-    badge: "Limited",
-    image: "https://images.unsplash.com/photo-1621012430307-b088bb92dc0e?auto=format&fit=crop&q=80&w=600"
-  }
-];
+// REAL PRODUCT DATA (Now fetched from backend API)
+let products = [];
 
-// MOCK USER DATABASE (For "Real" login simulation)
-const mockUsers = [
-  {
-    email: "test@example.com",
-    password: "password123",
-    name: "Ankita"
-  },
-  {
-    email: "admin@ankita.com",
-    password: "admin",
-    name: "Admin"
+// FETCH PRODUCTS FROM BACKEND
+async function fetchProducts() {
+  try {
+    const response = await fetch('/api/products');
+    if (!response.ok) throw new Error('Network response was not ok');
+    products = await response.json();
+    renderProducts();
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    if (productGrid) {
+      productGrid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:100px 0;">Error loading products. Please try again later.</div>';
+    }
   }
-];
+}
+
+
 
 // STATE MANAGEMENT
 let cart = JSON.parse(localStorage.getItem('ankita_cart')) || [];
-let isDarkMode = localStorage.getItem('ankita_theme') === 'dark';
+let isDarkMode = true;
 let currentUser = JSON.parse(localStorage.getItem('ankita_user')) || null;
 
 // DOM ELEMENTS
@@ -108,6 +46,14 @@ const loginForm = document.getElementById('loginForm');
 const loginError = document.getElementById('loginError');
 const userNameDisplay = document.getElementById('userNameDisplay');
 
+// REGISTER ELEMENTS
+const registerForm = document.getElementById('registerForm');
+const registerError = document.getElementById('registerError');
+const loginContent = document.getElementById('loginContent');
+const registerContent = document.getElementById('registerContent');
+const showRegisterBtn = document.getElementById('showRegister');
+const showLoginBtn = document.getElementById('showLogin');
+
 // MOBILE MENU ELEMENTS
 const menuTrigger = document.querySelector('.mobile-menu-trigger');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -116,13 +62,13 @@ const closeMenuBtn = document.getElementById('closeMenu');
 
 // INITIALIZE
 document.addEventListener('DOMContentLoaded', () => {
-  // Skeleton loader simulation
+  // Skeleton loader simulation & API fetch
   setTimeout(() => {
-    renderProducts();
+    fetchProducts();
   }, 1200);
   
   updateCartUI();
-  applyTheme();
+
   updateAuthUI();
 });
 
@@ -140,33 +86,103 @@ function updateAuthUI() {
 
 // LOGIN LOGIC
 if (loginForm) {
-  loginForm.addEventListener('submit', (e) => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = loginForm.querySelector('input[type="email"]').value;
     const password = loginForm.querySelector('input[type="password"]').value;
     
-    // Simulate API request delay
     const submitBtn = loginForm.querySelector('.btn-login');
     const originalText = submitBtn.textContent;
     submitBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Authenticating...';
     
-    setTimeout(() => {
-      const user = mockUsers.find(u => u.email === email && u.password === password);
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
       
-      if (user) {
-        currentUser = user;
+      const data = await response.json();
+      
+      if (response.ok) {
+        currentUser = data;
         localStorage.setItem('ankita_user', JSON.stringify(currentUser));
         updateAuthUI();
         closeLoginFunc();
         loginError.style.display = 'none';
         loginForm.reset();
-        alert(`Welcome back, ${user.name}!`);
+        alert(`Welcome back, ${data.name}!`);
       } else {
-        loginError.textContent = "Invalid email or password. Please try again.";
+        loginError.textContent = data.error || "Invalid email or password.";
         loginError.style.display = 'block';
       }
+    } catch (err) {
+      loginError.textContent = "Server error. Please try again later.";
+      loginError.style.display = 'block';
+    } finally {
       submitBtn.textContent = originalText;
-    }, 1500);
+    }
+  });
+}
+
+// REGISTER LOGIC
+if (registerForm) {
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = registerForm.querySelector('input[name="name"]').value;
+    const email = registerForm.querySelector('input[name="email"]').value;
+    const password = registerForm.querySelector('input[name="password"]').value;
+    
+    const submitBtn = registerForm.querySelector('.btn-login');
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Creating...';
+    
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        currentUser = data;
+        localStorage.setItem('ankita_user', JSON.stringify(currentUser));
+        updateAuthUI();
+        closeLoginFunc();
+        registerError.style.display = 'none';
+        registerForm.reset();
+        alert(`Account created successfully! Welcome, ${data.name}!`);
+      } else {
+        registerError.textContent = data.error || "Registration failed.";
+        registerError.style.display = 'block';
+      }
+    } catch (err) {
+      registerError.textContent = "Server error. Please try again later.";
+      registerError.style.display = 'block';
+    } finally {
+      submitBtn.textContent = originalText;
+    }
+  });
+}
+
+// TOGGLE LOGIN/REGISTER VIEWS
+if (showRegisterBtn) {
+  showRegisterBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginContent.style.display = 'none';
+    registerContent.style.display = 'block';
+    loginError.style.display = 'none';
+  });
+}
+
+if (showLoginBtn) {
+  showLoginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    registerContent.style.display = 'none';
+    loginContent.style.display = 'block';
+    registerError.style.display = 'none';
   });
 }
 
@@ -365,20 +381,7 @@ document.querySelectorAll('.menu-link').forEach(link => {
   link.addEventListener('click', closeMenu);
 });
 
-// THEME TOGGLE
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    isDarkMode = !isDarkMode;
-    applyTheme();
-    localStorage.setItem('ankita_theme', isDarkMode ? 'dark' : 'light');
-  });
-}
 
-function applyTheme() {
-  document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  const themeIcon = themeToggle.querySelector('i');
-  if (themeIcon) themeIcon.className = isDarkMode ? 'ri-sun-line' : 'ri-moon-line';
-}
 
 // SCROLL TO TOP
 window.addEventListener('scroll', () => {
