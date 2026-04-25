@@ -125,13 +125,22 @@ if (checkoutBtn) {
     checkoutBtn.innerText = "Processing...";
 
     try {
+      const bookingDetails = {
+        blouseType: document.getElementById('blouseType').value,
+        neckStyle: document.getElementById('neckStyle').value,
+        sleeveStyle: document.getElementById('sleeveStyle').value,
+        apptDate: document.getElementById('apptDate').value
+      };
+
       const res = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: currentUser.email,
+          name: currentUser.name,
           items: cart,
-          total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+          total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+          details: bookingDetails
         })
       });
 

@@ -344,7 +344,51 @@
           <span id="cartGrandTotal">₹0</span>
         </div>
       </div>
-      <button class="btn-checkout">Confirm Booking Request <i class="ri-calendar-check-line"></i></button>
+      
+      <!-- Booking Enquiry Form -->
+      <div id="bookingEnquiry" style="margin-top: 20px; border-top: 1px solid #222; padding-top: 20px;">
+        <h4 style="margin-bottom: 15px; color: var(--accent);">Measurement & Style Details</h4>
+        <div class="booking-details-form">
+          <div class="form-group">
+            <label style="font-size: 0.8rem;">Blouse Type</label>
+            <select id="blouseType" style="width:100%; padding:8px; background:#000; border:1px solid #333; color:#fff; border-radius:5px;">
+              <option>Padded Blouse</option>
+              <option>Princess Cut</option>
+              <option>Katori Blouse</option>
+              <option>Sabyasachi Cut</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.8rem;">Neck Style</label>
+            <select id="neckStyle" style="width:100%; padding:8px; background:#000; border:1px solid #333; color:#fff; border-radius:5px;">
+              <option>Sweetheart</option>
+              <option>Deep U-Neck</option>
+              <option>Boat Neck</option>
+              <option>High Neck</option>
+              <option>Halter Neck</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.8rem;">Sleeve Style</label>
+            <select id="sleeveStyle" style="width:100%; padding:8px; background:#000; border:1px solid #333; color:#fff; border-radius:5px;">
+              <option>Elbow Length</option>
+              <option>Sleeveless</option>
+              <option>Full Sleeve</option>
+              <option>Puff Sleeve</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.8rem;">Appt Date</label>
+            <input type="date" id="apptDate" style="width:100%; padding:8px; background:#000; border:1px solid #333; color:#fff; border-radius:5px;">
+          </div>
+          <div class="form-group full-width">
+            <label style="font-size: 0.8rem;">Upload Own Design (Optional)</label>
+            <input type="file" id="customDesignFile" accept="image/*" style="font-size: 0.7rem; color: #888;">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-checkout" style="margin-top: 20px;">Confirm Booking Request <i class="ri-calendar-check-line"></i></button>
       <p style="font-size: 0.7rem; color: var(--text-secondary); text-align: center; margin-top: 8px;">
         *This is a stitching enquiry, not an online purchase.
       </p>
@@ -417,6 +461,11 @@
       </div>
     </div>
   </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919999999999?text=Hi%20Ankita,%20I'm%20interested%20in%20your%20stitching%20services!" class="whatsapp-float" target="_blank">
+    <i class="ri-whatsapp-line"></i>
+  </a>
 
   <script src="script.js"></script>
 </body>

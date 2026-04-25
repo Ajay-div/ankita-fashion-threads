@@ -1507,3 +1507,49 @@ section {
   color: var(--accent);
   font-weight: 700;
 }
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.booking-details-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.booking-details-form .form-group {
+  margin-bottom: 0;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 480px) {
+  .booking-details-form {
+    grid-template-columns: 1fr;
+  }
+}

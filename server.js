@@ -57,13 +57,15 @@ const db = new sqlite3.Database(process.env.DATABASE_URL || './database.sqlite',
       role TEXT DEFAULT 'user'
     )`);
 
-    // Orders
+    // Orders (Bookings)
     db.run(`CREATE TABLE IF NOT EXISTS orders (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_email TEXT,
       items TEXT NOT NULL,
       total INTEGER NOT NULL,
       status TEXT DEFAULT 'Pending',
+      details TEXT,
+      appointment_date TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`);
 
@@ -133,9 +135,9 @@ app.post('/api/login', authLimiter, (req, res) => {
 
 // ORDERS
 app.post('/api/orders', (req, res) => {
-  const { email, items, total, name } = req.body;
-  db.run("INSERT INTO orders (user_email, items, total) VALUES (?, ?, ?)", 
-    [email, JSON.stringify(items), total], async function(err) {
+  const { email, items, total, name, details } = req.body;
+  db.run("INSERT INTO orders (user_email, items, total, details, appointment_date) VALUES (?, ?, ?, ?, ?)", 
+    [email, JSON.stringify(items), total, JSON.stringify(details), details?.apptDate], async function(err) {
     if (err) return res.status(500).json({ error: "Order failed" });
     
     // SEND EMAIL NOTIFICATION
@@ -144,14 +146,22 @@ app.post('/api/orders', (req, res) => {
       to: email,
       subject: 'Stitching Booking Request - Ankita Fashion Threads',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #d4af37;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #d4af37; background: #fff; color: #333;">
           <h2 style="color: #d4af37;">Booking Request Received, ${name || 'Customer'}!</h2>
           <p>We have received your request for <b>Custom Stitching #${this.lastID}</b>.</p>
-          <h3>Service Details:</h3>
-          <p>Estimated Total: <b>₹${total.toLocaleString()}</b></p>
-          <hr>
-          <p>Our designer will contact you shortly to schedule an appointment for measurements and fabric selection.</p>
-          <p>Best Regards,<br>Ankita Fashion Threads Team</p>
+          
+          <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="margin-top: 0;">Service Details:</h3>
+            <p><b>Blouse Type:</b> ${details?.blouseType || 'Not specified'}</p>
+            <p><b>Neck Style:</b> ${details?.neckStyle || 'Not specified'}</p>
+            <p><b>Sleeve Style:</b> ${details?.sleeveStyle || 'Not specified'}</p>
+            <p><b>Appointment Date:</b> ${details?.apptDate || 'To be scheduled'}</p>
+            <p><b>Estimated Total:</b> ₹${total.toLocaleString()}</p>
+          </div>
+          
+          <hr style="border: 0; border-top: 1px solid #eee;">
+          <p>Our designer will contact you shortly to confirm your appointment and discuss further customization.</p>
+          <p>Best Regards,<br><b>Ankita Fashion Threads Team</b></p>
         </div>
       `
     };
