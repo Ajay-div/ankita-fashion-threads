@@ -1,19 +1,156 @@
 // REAL PRODUCT DATA (Now fetched from backend API)
 let products = [];
 
-// FETCH PRODUCTS FROM BACKEND
-async function fetchProducts() {
-  try {
-    const response = await fetch('/api/products');
-    if (!response.ok) throw new Error('Network response was not ok');
-    products = await response.json();
-    renderProducts();
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    if (productGrid) {
-      productGrid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:100px 0;">Error loading products. Please try again later.</div>';
-    }
+// PRODUCT DETAIL MODAL & REVIEWS
+const detailModal = document.getElementById('productDetailModal');
+let selectedProductId = null;
+let currentRating = 0;
+
+function openProductModal(id) {
+  const p = products.find(prod => prod.id === id);
+  if(!p) return;
+  selectedProductId = id;
+  document.getElementById('detailImg').src = p.image;
+  document.getElementById('detailName').innerText = p.name;
+  document.getElementById('detailPrice').innerText = `₹${p.price.toLocaleString()}`;
+  detailModal.classList.add('active');
+  fetchReviews(id);
+}
+
+function closeProductModal() {
+  detailModal.classList.remove('active');
+}
+
+async function fetchReviews(productId) {
+  const res = await fetch(`/api/reviews/${productId}`);
+  const reviews = await res.json();
+  const list = document.getElementById('reviewsList');
+  const avg = document.getElementById('avgRating');
+  
+  if(reviews.length === 0) {
+    list.innerHTML = '<p style="color:var(--text-secondary); font-size:0.9rem;">No reviews yet. Be the first!</p>';
+    avg.innerText = '0 ★';
+    return;
   }
+
+  const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
+  avg.innerText = `${(totalRating / reviews.length).toFixed(1)} ★`;
+  
+  list.innerHTML = reviews.map(r => `
+    <div style="border-bottom: 1px solid #222; padding: 10px 0;">
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+        <span style="font-weight:600; color:var(--accent);">${r.user_name}</span>
+        <span style="color:var(--accent);">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+      </div>
+      <p style="font-size:0.9rem;">${r.comment}</p>
+    </div>
+  `).join('');
+}
+
+// Star Rating Interaction
+document.querySelectorAll('.star').forEach(star => {
+  star.onclick = (e) => {
+    currentRating = parseInt(e.target.dataset.val);
+    document.querySelectorAll('.star').forEach((s, idx) => {
+      if(idx < currentRating) {
+        s.classList.replace('ri-star-line', 'ri-star-fill');
+      } else {
+        s.classList.replace('ri-star-fill', 'ri-star-line');
+      }
+    });
+  };
+});
+
+// Review Submission
+document.getElementById('reviewForm').onsubmit = async (e) => {
+  e.preventDefault();
+  if(!currentUser) {
+    alert("Please login to leave a review.");
+    openLogin();
+    return;
+  }
+  if(currentRating === 0) {
+    alert("Please select a rating.");
+    return;
+  }
+
+  const comment = document.getElementById('reviewText').value;
+  const res = await fetch('/api/reviews', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      productId: selectedProductId,
+      name: currentUser.name,
+      rating: currentRating,
+      comment: comment
+    })
+  });
+
+  if(res.ok) {
+    document.getElementById('reviewText').value = '';
+    currentRating = 0;
+    document.querySelectorAll('.star').forEach(s => s.classList.replace('ri-star-fill', 'ri-star-line'));
+    fetchReviews(selectedProductId);
+  }
+};
+
+// SEARCH & FILTER
+const searchInput = document.querySelector('.nav-search input');
+if (searchInput) {
+  searchInput.addEventListener('input', (e) => {
+    fetchProducts('', e.target.value);
+  });
+}
+
+function filterByCategory(category) {
+  fetchProducts(category);
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+// CHECKOUT LOGIC
+const checkoutBtn = document.querySelector('.btn-checkout');
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', async () => {
+    if (!currentUser) {
+      alert("Please login to complete your order.");
+      openLogin();
+      return;
+    }
+    if (cart.length === 0) {
+      alert("Your bag is empty!");
+      return;
+    }
+
+    checkoutBtn.disabled = true;
+    checkoutBtn.innerText = "Processing...";
+
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: currentUser.email,
+          items: cart,
+          total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        })
+      });
+
+      if (res.ok) {
+        alert("Booking request placed! We will contact you shortly for measurements.");
+        cart = [];
+        localStorage.removeItem('ankita_cart');
+        updateCartUI();
+        closeCartFunc();
+      } else {
+        alert("Failed to place order. Please try again.");
+      }
+    } catch (err) {
+      alert("Server error. Please try again.");
+    } finally {
+      checkoutBtn.disabled = false;
+      checkoutBtn.innerText = "Secure Checkout";
+    }
+  });
 }
 
 
@@ -208,6 +345,12 @@ function renderProducts() {
   products.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
+    card.onclick = (e) => {
+      if(e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
+        openProductModal(product.id);
+      }
+    };
+    
     card.innerHTML = `
       <div class="product-img-wrapper">
         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
@@ -220,7 +363,7 @@ function renderProducts() {
           <span class="price-current">₹${product.price.toLocaleString('en-IN')}</span>
           ${product.oldPrice ? `<span class="price-old">₹${product.oldPrice.toLocaleString('en-IN')}</span>` : ''}
         </div>
-        <button class="btn-add-cart" onclick="addToCart(${product.id})">Add to Bag</button>
+        <button class="btn-add-cart" onclick="addToCart(${product.id})">Add to Booking</button>
       </div>
     `;
     productGrid.appendChild(card);

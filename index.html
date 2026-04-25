@@ -50,8 +50,8 @@
           <span id="userNameDisplay"
             style="font-size: 0.8rem; margin-left: 5px; font-weight: 600; display: none;"></span>
         </button>
-        <button class="nav-btn" id="cartBtn" title="Cart">
-          <i class="ri-shopping-bag-line"></i>
+        <button class="nav-btn" id="cartBtn" title="Booking List">
+          <i class="ri-list-check-line"></i>
           <span class="cart-count">0</span>
         </button>
       </div>
@@ -119,10 +119,9 @@
     <div class="container">
       <div class="hero-content">
         <span class="hero-tagline">The Art of Indian Weaves</span>
-        <h1 class="hero-title">Timeless <span class="italic-serif">Elegance</span> <br> Defined.</h1>
-        <p class="hero-desc">Experience the luxury of handpicked sarees and bespoke Aari craftsmanship, tailored for the
-          modern connoisseur.</p>
-        <a href="#products" class="btn-shop">Explore Collection</a>
+        <h1 class="hero-title">Custom Stitching <br>& <span class="italic-serif">Aari</span> Couture.</h1>
+        <p class="hero-desc">Explore our design menu, pick your favorite styles, and book your custom stitching appointment with us.</p>
+        <a href="#products" class="btn-shop">Explore Design Menu</a>
       </div>
     </div>
   </header>
@@ -158,7 +157,7 @@
       </div>
 
       <div class="category-grid">
-        <div class="category-card">
+        <div class="category-card" onclick="filterByCategory('Sarees')">
           <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600"
             alt="Women">
           <div class="category-content">
@@ -166,21 +165,21 @@
             <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
           </div>
         </div>
-        <div class="category-card">
+        <div class="category-card" onclick="filterByCategory('Lehengas')">
           <img src="lehenga-cat.png" alt="Lehengas">
           <div class="category-content">
             <h3 class="category-name">Lehengas</h3>
             <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
           </div>
         </div>
-        <div class="category-card">
+        <div class="category-card" onclick="filterByCategory('Fabrics')">
           <img src="fabrics-cat.png" alt="Fabrics">
           <div class="category-content">
             <h3 class="category-name">Fabrics</h3>
             <span class="category-link">Explore <i class="ri-arrow-right-line"></i></span>
           </div>
         </div>
-        <div class="category-card">
+        <div class="category-card" onclick="filterByCategory('Aari Work')">
           <img src="arri-work/aari-blouse-1.jpg" alt="Aari Work">
           <div class="category-content">
             <h3 class="category-name">Aari Work</h3>
@@ -332,7 +331,7 @@
   <div class="cart-overlay" id="cartOverlay"></div>
   <aside class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
-      <h3>Your Bag (<span id="cartItemCount">0</span>)</h3>
+      <h3>Your Booking List (<span id="cartItemCount">0</span>)</h3>
       <button class="close-cart" id="closeCart"><i class="ri-close-line"></i></button>
     </div>
     <div class="cart-items" id="cartItemsList">
@@ -340,20 +339,15 @@
     </div>
     <div class="cart-footer">
       <div class="cart-summary">
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span id="cartSubtotal">₹0</span>
-        </div>
-        <div class="summary-row">
-          <span>Shipping</span>
-          <span class="accent-text">Free</span>
-        </div>
         <div class="summary-row total">
-          <span>Grand Total</span>
+          <span>Estimated Total</span>
           <span id="cartGrandTotal">₹0</span>
         </div>
       </div>
-      <button class="btn-checkout">Secure Checkout <i class="ri-lock-2-line"></i></button>
+      <button class="btn-checkout">Confirm Booking Request <i class="ri-calendar-check-line"></i></button>
+      <p style="font-size: 0.7rem; color: var(--text-secondary); text-align: center; margin-top: 8px;">
+        *This is a stitching enquiry, not an online purchase.
+      </p>
     </div>
   </aside>
 
@@ -366,7 +360,7 @@
     </div>
     <nav class="menu-nav">
       <a href="#" class="menu-link active">Home</a>
-      <a href="#products" class="menu-link">Shop Collection</a>
+      <a href="#products" class="menu-link">Design Menu</a>
       <a href="#" class="menu-link">Aari Work</a>
       <a href="#" class="menu-link">Custom Orders</a>
       <a href="#" class="menu-link">About Us</a>
@@ -383,6 +377,46 @@
 
   <!-- ─── SCROLL TO TOP ───────────────────────────── -->
   <button class="scroll-top" id="scrollTop"><i class="ri-arrow-up-s-line"></i></button>
+
+  <!-- Product Details Modal -->
+  <div id="productDetailModal" class="modal">
+    <div class="modal-content" style="max-width: 800px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px;">
+      <button class="modal-close" onclick="closeProductModal()" style="position: absolute; right: 20px; top: 20px; background: none; border: none; font-size: 1.5rem; color: #fff; cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+      
+      <div class="product-visual">
+        <img id="detailImg" src="" style="width: 100%; border-radius: 12px; object-fit: cover;">
+      </div>
+      
+      <div class="product-info-panel">
+        <h2 id="detailName" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 10px;"></h2>
+        <div id="detailPrice" style="font-size: 1.5rem; color: var(--accent); font-weight: 700; margin-bottom: 20px;"></div>
+        
+        <div class="reviews-section">
+          <h3 style="font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+            Customer Reviews <span id="avgRating" class="badge">0 ★</span>
+          </h3>
+          
+          <div id="reviewsList" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+            <!-- Reviews will load here -->
+          </div>
+          
+          <form id="reviewForm" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px;">
+            <div style="display: flex; gap: 5px; margin-bottom: 10px; color: var(--accent);" id="starRating">
+              <i class="ri-star-line star" data-val="1"></i>
+              <i class="ri-star-line star" data-val="2"></i>
+              <i class="ri-star-line star" data-val="3"></i>
+              <i class="ri-star-line star" data-val="4"></i>
+              <i class="ri-star-line star" data-val="5"></i>
+            </div>
+            <textarea id="reviewText" placeholder="Share your experience..." style="width: 100%; background: #000; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 5px; height: 60px; outline: none; margin-bottom: 10px;"></textarea>
+            <button type="submit" class="nav-btn" style="width: 100%; padding: 10px;">Submit Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
