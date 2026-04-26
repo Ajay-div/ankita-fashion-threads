@@ -94,17 +94,19 @@ document.getElementById('reviewForm').onsubmit = async (e) => {
   }
 };
 
-// SEARCH & FILTER
-const searchInput = document.querySelector('.nav-search input');
-if (searchInput) {
-  searchInput.addEventListener('input', (e) => {
-    fetchProducts('', e.target.value);
-  });
-}
-
-function filterByCategory(category) {
-  fetchProducts(category);
-  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+// FETCH PRODUCTS
+async function fetchProducts(category = '', search = '') {
+  try {
+    let url = `/api/products?category=${category}&search=${search}`;
+    const res = await fetch(url);
+    products = await res.json();
+    renderProducts();
+  } catch (err) {
+    console.error("Fetch Error:", err);
+    // Fallback if API fails (simulated)
+    products = [];
+    renderProducts();
+  }
 }
 
 // CHECKOUT LOGIC
@@ -112,17 +114,18 @@ const checkoutBtn = document.querySelector('.btn-checkout');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', async () => {
     if (!currentUser) {
-      alert("Please login to complete your order.");
+      alert("Please login to complete your booking enquiry.");
       openLogin();
       return;
     }
     if (cart.length === 0) {
-      alert("Your bag is empty!");
+      alert("Your booking list is empty!");
       return;
     }
 
+    const originalText = checkoutBtn.innerHTML;
     checkoutBtn.disabled = true;
-    checkoutBtn.innerText = "Processing...";
+    checkoutBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Processing...';
 
     try {
       const bookingDetails = {
@@ -145,19 +148,20 @@ if (checkoutBtn) {
       });
 
       if (res.ok) {
-        alert("Booking request placed! We will contact you shortly for measurements.");
+        alert("Booking request placed successfully! We will contact you shortly to confirm measurements.");
         cart = [];
         localStorage.removeItem('ankita_cart');
         updateCartUI();
         closeCartFunc();
       } else {
-        alert("Failed to place order. Please try again.");
+        const data = await res.json();
+        alert(data.error || "Failed to place order. Please try again.");
       }
     } catch (err) {
-      alert("Server error. Please try again.");
+      alert("Server error. Please try again later.");
     } finally {
       checkoutBtn.disabled = false;
-      checkoutBtn.innerText = "Secure Checkout";
+      checkoutBtn.innerHTML = originalText;
     }
   });
 }
@@ -497,24 +501,24 @@ function closeMenu() {
   document.body.style.overflow = 'auto';
 }
 
-// SIMULATED BACKEND: CHECKOUT
-const checkoutBtn = document.querySelector('.btn-checkout');
-if (checkoutBtn) {
-  checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('Your bag is empty!');
-      return;
-    }
-    checkoutBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Processing...';
-    setTimeout(() => {
-      alert('Order Placed Successfully! Simulated backend processed your request.');
-      cart = [];
-      saveCart();
-      updateCartUI();
-      closeCartFunc();
-      checkoutBtn.innerHTML = 'Secure Checkout <i class="ri-lock-2-line"></i>';
-    }, 2000);
+// SEARCH LOGIC
+const searchInput = document.querySelector('.nav-search input');
+if (searchInput) {
+  let debounceTimer;
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      fetchProducts('', e.target.value);
+    }, 300);
   });
+}
+
+function filterByCategory(category) {
+  fetchProducts(category);
+  const productsSection = document.getElementById('products');
+  if (productsSection) {
+    productsSection.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 // EVENTS
@@ -552,26 +556,4 @@ if (scrollTopBtn) {
   });
 }
 
-// SEARCH SIMULATION
-const searchInput = document.querySelector('.nav-search input');
-if (searchInput) {
-  searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
-    if (term.length > 2) {
-      const filtered = products.filter(p => p.name.toLowerCase().includes(term));
-      productGrid.innerHTML = '';
-      if (filtered.length > 0) {
-        filtered.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'product-card';
-          card.innerHTML = `<div class="product-img-wrapper"><img src="${p.image}"></div><div class="product-info"><h3 class="product-name">${p.name}</h3><div class="product-price-row"><span class="price-current">₹${p.price.toLocaleString()}</span></div><button class="btn-add-cart" onclick="addToCart(${p.id})">Add to Bag</button></div>`;
-          productGrid.appendChild(card);
-        });
-      } else {
-        productGrid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:100px 0;">No products found for "' + term + '"</div>';
-      }
-    } else if (term.length === 0) {
-      renderProducts();
-    }
-  });
-}
+// Initialization already handled in DOMContentLoaded

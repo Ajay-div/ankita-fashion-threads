@@ -10,7 +10,7 @@ const multer = require('multer');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // --- CONFIG & MIDDLEWARE ---
 app.use(helmet({ contentSecurityPolicy: false }));
