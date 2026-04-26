@@ -1081,6 +1081,8 @@ section {
   .mobile-menu-trigger {
     display: flex;
     font-size: 1.6rem;
+    color: var(--ink);
+    z-index: 1100;
   }
 
   .nav-container {

@@ -96,18 +96,21 @@ document.getElementById('reviewForm').onsubmit = async (e) => {
 
 // FETCH PRODUCTS
 async function fetchProducts(category = '', search = '') {
+  console.log(`Fetching products: cat=${category}, search=${search}`);
   try {
-    let url = `/api/products?category=${category}&search=${search}`;
+    let url = `/api/products?category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`;
     const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     products = await res.json();
+    console.log(`Loaded ${products.length} products`);
     renderProducts();
   } catch (err) {
     console.error("Fetch Error:", err);
-    // Fallback if API fails (simulated)
     products = [];
     renderProducts();
   }
 }
+window.fetchProducts = fetchProducts; // Make global
 
 // CHECKOUT LOGIC
 const checkoutBtn = document.querySelector('.btn-checkout');
@@ -385,19 +388,23 @@ function renderProducts() {
 
 // CART LOGIC
 function addToCart(productId) {
+  console.log("Adding to cart:", productId);
   const existingItem = cart.find(item => item.id === productId);
   
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
     const product = products.find(p => p.id === productId);
-    cart.push({ ...product, quantity: 1 });
+    if (product) {
+      cart.push({ ...product, quantity: 1 });
+    }
   }
   
   saveCart();
   updateCartUI();
   openCart();
 }
+window.addToCart = addToCart; // Make global
 
 function updateCartUI() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -490,16 +497,24 @@ function closeLoginFunc() {
 
 // MOBILE MENU LOGIC
 function openMenu() {
-  mobileMenu.classList.add('open');
-  menuOverlay.classList.add('open');
+  console.log("Opening mobile menu");
+  const mMenu = document.getElementById('mobileMenu');
+  const mOverlay = document.getElementById('menuOverlay');
+  if (mMenu) mMenu.classList.add('open');
+  if (mOverlay) mOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+window.openMenu = openMenu;
 
 function closeMenu() {
-  mobileMenu.classList.remove('open');
-  menuOverlay.classList.remove('open');
+  console.log("Closing mobile menu");
+  const mMenu = document.getElementById('mobileMenu');
+  const mOverlay = document.getElementById('menuOverlay');
+  if (mMenu) mMenu.classList.remove('open');
+  if (mOverlay) mOverlay.classList.remove('open');
   document.body.style.overflow = 'auto';
 }
+window.closeMenu = closeMenu;
 
 // SEARCH LOGIC
 const searchInput = document.querySelector('.nav-search input');
@@ -514,12 +529,14 @@ if (searchInput) {
 }
 
 function filterByCategory(category) {
+  console.log("Filtering by category:", category);
   fetchProducts(category);
   const productsSection = document.getElementById('products');
   if (productsSection) {
     productsSection.scrollIntoView({ behavior: 'smooth' });
   }
 }
+window.filterByCategory = filterByCategory; // Make global
 
 // EVENTS
 if (cartBtn) cartBtn.addEventListener('click', openCart);
